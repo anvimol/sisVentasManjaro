@@ -15,18 +15,17 @@ class CategoriaController extends Controller
      */
     public function index(Request $request)
     {
-        //$categorias = DB::table('categorias')->paginate(2);
         if (!$request->ajax()) return redirect('/');
         $buscar = $request->buscar;
         $criterio = $request->criterio;
 
         if ($buscar=='') {
-            $categorias = Categoria::orderBy('id','desc')->paginate(10);
+            $categorias = Categoria::orderBy('id','desc')->paginate(5);
         }
         else {
             $categorias = Categoria::where($criterio, 'like', '%' . $buscar . '%')
                 ->orderBy('id','desc')
-                ->paginate(10);
+                ->paginate(5);
         }
 
         return [
@@ -46,7 +45,7 @@ class CategoriaController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
         $categorias = Categoria::where('condicion','=','1')
-            ->select('id','nombre')->orderBy('nombre','asc')->get();
+        ->select('id','nombre')->orderBy('nombre','asc')->get();
 
         return ['categorias' => $categorias];
     }
@@ -89,7 +88,7 @@ class CategoriaController extends Controller
         if (!$request->ajax()) return redirect('/');
         $categoria = Categoria::findOrFail($request->id);
         $categoria->condicion = '0';
-        $categoria->save();
+        $categoria->save(); 
     }
 
     public function activar(Request $request)
@@ -97,6 +96,6 @@ class CategoriaController extends Controller
         if (!$request->ajax()) return redirect('/');
         $categoria = Categoria::findOrFail($request->id);
         $categoria->condicion = '1';
-        $categoria->save();
+        $categoria->save(); 
     }
 }

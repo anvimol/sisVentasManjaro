@@ -14,12 +14,12 @@ class ClienteController extends Controller
         $criterio = $request->criterio;
 
         if ($buscar=='') {
-            $personas = Persona::orderBy('id','desc')->paginate(2);
+            $personas = Persona::orderBy('id','desc')->paginate(5);
         }
         else {
             $personas = Persona::where($criterio, 'like', '%' . $buscar . '%')
                 ->orderBy('id','desc')
-                ->paginate(2);
+                ->paginate(5);
         }
 
         return [
@@ -35,6 +35,18 @@ class ClienteController extends Controller
         ];
     }
 
+    public function selectCliente(Request $request)
+    {
+        if (!$request->ajax()) return redirect('/');
+        $filtro = $request->filtro;
+        $clientes = Persona::where('nombre', 'like', '%' . $filtro . '%')
+        ->orwhere('num_documento', 'like', '%' . $filtro . '%')
+        ->select('id','nombre','num_documento')
+        ->orderBy('nombre', 'asc')->get();
+
+        return ['clientes' => $clientes];
+    }
+
     public function store(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
@@ -48,6 +60,13 @@ class ClienteController extends Controller
         $persona->save();
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request)
     {
         if (!$request->ajax()) return redirect('/');

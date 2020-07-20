@@ -157,7 +157,7 @@
             return {
                 persona_id : 0,
                 nombre : '',
-                tipo_documento : 'DNI',
+                tipo_documento : '',
                 num_documento : '',
                 direccion : '',
                 telefono : '',
@@ -335,6 +335,7 @@
             }
         },
         mounted() {
+            //window.swal = require('sweetalert2');
             this.listarPersona(1,this.buscar,this.criterio)
         }
     }

@@ -32,14 +32,14 @@
                 <table class="table table-bordered table-striped table-sm">
                     <thead>
                         <tr>
-                            <th width=100>Opciones</th>
-                            <th width=150>Código</th>
-                            <th width=350>Nombre</th>
-                            <th width=200>Categoria</th>
-                            <th width=100>Precio Venta</th>
-                            <th width=100>Stock</th>
+                            <th>Opciones</th>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Categoria</th>
+                            <th>Precio Venta</th>
+                            <th>Stock</th>
                             <th>Descripción</th>
-                            <th width=100>Estado</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -183,9 +183,9 @@
                 nombre_categoria : '',
                 codigo : '',
                 nombre : '',
-                precio_venta : 0,
+                precio_venta : '',
                 stock : 0,
-                descripcion : '',
+                descripcion : 0,
                 arrayArticulo: [],
                 modal : 0,
                 tituloModal : '',
@@ -252,15 +252,15 @@
                 });
             },
             cargarPdf() {
-                //window.open('http://appventas.test/articulo/listarPdf','_blank');
+                window.open('http://appventas.test/articulo/listarPdf','_blank');
             },
             selectCategoria() {
                 let me = this;
                 var url = '/categoria/selectCategoria';
                 axios.get(url).then(function (response) {
-                    //console.log(response);
-                    var respuesta = response.data;
-                    me.arrayCategoria = respuesta.categorias;
+                    console.log(response);
+                var respuesta = response.data;
+                me.arrayCategoria = respuesta.categorias;
                 })
                 .catch(function (error) {
                     // handle error

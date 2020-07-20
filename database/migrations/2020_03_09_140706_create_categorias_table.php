@@ -14,7 +14,7 @@ class CreateCategoriasTable extends Migration
     public function up()
     {
         Schema::create('categorias', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nombre', 50);
             $table->string('descripcion', 256)->nullable();
             $table->boolean('condicion')->default(1);
@@ -31,4 +31,5 @@ class CreateCategoriasTable extends Migration
     {
         Schema::dropIfExists('categorias');
     }
+
 }
