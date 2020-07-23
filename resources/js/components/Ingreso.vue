@@ -9,9 +9,9 @@
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify"></i> Ingresos
-                <button type="button" @click="mostrarDetalle()" class="btn btn-secondary">
-                    <i class="icon-plus"></i>&nbsp;Nuevo
-                </button>
+                    <button type="button" @click="mostrarDetalle()" class="btn btn-secondary">
+                        <i class="icon-plus"></i>&nbsp;Nuevo
+                    </button>                
             </div>
             <!-- Listado -->
             <template v-if="listado == 1">
@@ -796,5 +796,4 @@
             margin-top: 2rem;
         }
     }
-    
 </style>
